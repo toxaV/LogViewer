@@ -1,0 +1,13 @@
+{
+    "name": "ServiceAdministration",
+    "version": "0.0.1",
+    "dependencies": {
+        "bootstrap": "latest",
+        "angular-bootstrap": "latest",
+        "angular": "latest",
+        "angular-route": "latest",
+        "angular-resource": "latest",
+        "ng-table": "latest",
+        "angular-gettext": "latest"
+    }
+}
