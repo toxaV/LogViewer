@@ -1,38 +1,57 @@
 angular.module('logControllerModule', ['logServiceModule', 'ngTable'])
     .controller('logController', function ($scope, $filter, $modal, $log, logService, ngTableParams) {
 
-    	var strLogs = localStorage.getItem('logs');
-    	$scope.logs = strLogs != null ? JSON.parse(strLogs) : [];
+        var strLogs = localStorage.getItem('logs');
+        $scope.logs = strLogs != null ? JSON.parse(strLogs) : [];
 
-    	$scope.tableParams = new ngTableParams({
-    		page: 1,
-    		count: 10,
-    		sorting: {
-    			name: 'asc'     // initial sorting
-    		}
-    	}, {
-    		getData: function ($defer, params) {
-    			//logService.query(function (instances) {
-    			//	params.total(instances.length);
+        $scope.init = function () {
+            for (var i = 1; i <= 100; i++) {
+                var log = {
+                    LogID: i,
+                    Severity: 'Warn',
+                    Title: 'GetAccountInformation',
+                    Timestamp: '2015-09-30 10:21:09.300',
+                    MachineName: 'RD000D3AB02CD6',
+                    ProcessName: 'd:\\windows\\system32\\inetsrv\\w3wp.exe',
+                    Message: 'Operation completed successfully',
+                    FormattedMessage: 'HTML'
+                };
 
-    			//	var orderedData = params.sorting() ?
-    			//        $filter('orderBy')(instances, params.orderBy()) :
-    			//        instances;
+                $scope.logs.push(log);
+            }
 
-    			//	var filteredData = params.filter() ?
-    			//        $filter('filter')(orderedData, params.filter()) :
-    			//        orderedData;
+            localStorage.setItem('logs', JSON.stringify($scope.logs));
+        };
 
-    			//	$defer.resolve(filteredData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-    			//});
-    			$defer.resolve($scope.logs.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-    		},
-    		total: $scope.logs.lenght
-    	});
+        $scope.tableParams = new ngTableParams({
+            page: 1,
+            count: 10,
+            sorting: {
+                name: 'asc'     // initial sorting
+            }
+        }, {
+            getData: function ($defer, params) {
+                //logService.query(function (instances) {
+                //	params.total(instances.length);
 
-    	//$scope.tableParamsComponents = new ngTableParams({
-    	//	count: 0 // hides pager
-    	//}, {
-    	//	counts: [] // hides page sizes
-    	//});
+                //	var orderedData = params.sorting() ?
+                //        $filter('orderBy')(instances, params.orderBy()) :
+                //        instances;
+
+                //	var filteredData = params.filter() ?
+                //        $filter('filter')(orderedData, params.filter()) :
+                //        orderedData;
+
+                //	$defer.resolve(filteredData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                //});
+                $defer.resolve($scope.logs.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            },
+            total: $scope.logs.lenght
+        });
+
+        //$scope.tableParamsComponents = new ngTableParams({
+        //	count: 0 // hides pager
+        //}, {
+        //	counts: [] // hides page sizes
+        //});
     });
