@@ -16,7 +16,6 @@ angular.module('logControllerModule', ['logServiceModule', 'ngTable'])
                     Message: 'Operation completed successfully',
                     FormattedMessage: 'HTML'
                 };
-
                 $scope.logs.push(log);
             }
 
