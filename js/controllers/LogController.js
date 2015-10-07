@@ -5,10 +5,14 @@ angular.module('logControllerModule', ['logServiceModule', 'ngTable'])
         $scope.logs = strLogs != null ? JSON.parse(strLogs) : [];
 
         $scope.init = function () {
+            var severityList = ["Warn","Information","Error"];
             for (var i = 1; i <= 100; i++) {
+
+                var severityRandom = Math.round(Math.random() * (severityList.length - 1));
+
                 var log = {
                     LogID: i,
-                    Severity: 'Warn',
+                    Severity: severityList[severityRandom],
                     Title: 'GetAccountInformation',
                     Timestamp: '2015-09-30 10:21:09.300',
                     MachineName: 'RD000D3AB02CD6',
