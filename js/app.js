@@ -8,7 +8,8 @@ angular.module('ServiceAdministration', [
     'logServiceModule',
 	'localizationControllerModule',
     'configuration',
-    'gettext'])
+    'gettext',
+    'angularSoap'])
 
     .run(function (gettextCatalog) {
         gettextCatalog.currentLanguage = 'en';

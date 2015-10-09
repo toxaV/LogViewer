@@ -1,2 +1,2 @@
 angular.module('configuration', [])
-    .constant('serverManager', 'http://localhost:49313/api');
+    .constant('serverManager', 'http://enterpriselogview.cloudapp.net/LogViewService.svc');
